@@ -138,6 +138,13 @@ def list_department_employees():
     department_id_ = input("Enter the department's id: ")
     
     if department := Department.find_by_id(department_id_):
-        employees = department.get_employees()
-        for employee in employees:
-            print(employee)
+        employees = department.employees()
+        if employees:
+            for employee in employees:
+                print(employee)
+            
+        else:
+            print("No employees found for this department.")
+    else:
+        print(f"Department {department_id_} not found.")
+
